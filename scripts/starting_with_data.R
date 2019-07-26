@@ -62,3 +62,77 @@ nrow(interviews[-7:131, ])
 #correct answer
 interviews_head <- interviews[-(7:n_rows), ]
 interviews_head
+
+
+##FACTORS: DAY 2 after morning tea
+
+floor_type <- factor(c("earth","cement","cement","earth"))    ##this is sorted alphabetically
+levels(floor_type)                                         ##what are the levels?
+nlevels(floor_type)                                        ##numer of levels 
+
+#cement automatically 1 and earth 2 because R does it alphabetically. 
+#to make earth 1 and cement 2
+floor_type <- factor(c("earth","cement","cement","earth"),
+                     levels=c("earth","cement")) 
+
+levels(floor_type)[2] <- brick          #only want the second level, cement. Assign cement as brick. C
+                                         #changes all cement to brick
+
+
+
+as.character(floor_type)              ##convert factors to characters
+
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))    
+as.numeric(year_fct)        ##altho the input are numbers, you wna change it to catergories. 
+                            ##tells you which entry converts to which factor level
+##so we convert to character first 
+as.character(year_fct)       ##gives me charactor vector of years. 
+##SO WE GOTTA extract character and CHANGE TO NUMBERS
+as.numeric(as.character(year_fct))
+
+levels(year_fct)[year_fct]      ##[year_fct] pulls out each year as each entry 
+##now we want them as numbers, not characters
+as.numeric(levels(year_fct))[year_fct]
+
+##if you want to count how many 1990sthere are, you can do this: 
+year_nmb <- as.numeric(levels(year_fct))[year_fct]
+table(year_nmb)
+table(year_fct)
+summary(year_fct)
+
+
+
+
+affect_conflicts <- interviews$affect_conflicts
+affect_conflicts <- as.factor(affect_conflicts)      ##as.factor=converts to factor 
+
+plot(affect_conflicts)           ##frequency histogram 
+##but missing data is not in the graph 
+##to not lose missing data: 
+
+affect_conflicts <- interviews$affect_conflicts
+affect_conflicts[is.na(affect_conflicts)]   ##but this isn't helpful as it just gives a list of NAs
+
+affect_conflicts[is.na(affect_conflicts)] <- "undetermined"  ##replace NAs with undetermined 
+
+plot(affect_conflicts)
+
+
+##EXERCISE 
+#Q1 Rename the factor level “more_once” to “more than once”.
+levels(affect_conflicts)[2] <- "more than once"
+plot(affect_conflicts)
+
+#Q2
+affect_conflicts <- factor(affect_conflicts, levels=c("never","once","more than once","frequently","undertermined") ) 
+##^to change the order of the levels
+plot(affect_conflicts)
+
+
+
+
+
+
+
+
+

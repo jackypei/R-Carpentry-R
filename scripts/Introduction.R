@@ -61,3 +61,18 @@ respondent_wall_type[c(3,2)]
 more_respondent_wall_type <- respondent_wall_type[c(1,2,3,2,1,3)]
 
 no_membrs[c(TRUE, FALSE, TRUE, TRUE)]
+no_membrs[no_membrs > 5]
+no_membrs[no_membrs < 3 | no_membrs > 5]
+no_membrs[no_membrs >= 7 & no_membrs == 3]
+
+possessions[possessions == "car" | possessions == 'bicycle'] # returns both car and bicycle
+possessions %in% c("car","bicycle")
+
+
+rooms <- c(2,1,1,NA,4)         #na = missing data
+mean(rooms, NA.rm=TRUE)        #take off NAs before finding the mean 
+
+!is.na(rooms)                   # ! means "NOT". "is.na" gets the ones that are NA 
+
+rooms[!is.na(rooms)]              #subset the ones that aren't NA out. 
+
